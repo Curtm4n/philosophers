@@ -6,38 +6,11 @@
 /*   By: cdapurif <cdapurif@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 19:35:36 by cdapurif          #+#    #+#             */
-/*   Updated: 2022/01/03 23:12:10 by cdapurif         ###   ########.fr       */
+/*   Updated: 2022/01/04 18:12:52 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
-
-void	*check_dead(void *arg)
-{
-	t_philo	*philo;
-	t_data	*data;
-
-	philo = (t_philo *)arg;
-	data = philo->data;
-	while (1)
-	{
-		sem_wait(data->meal_time);
-		if ((get_time() - philo->last_meal) > data->time_to_die)
-		{
-			print_action(data, philo->id, "died");
-			data->philo_dead = 1;
-			sem_wait(data->write);
-			exit(1);
-		}
-		sem_post(data->meal_time);
-		if (data->philo_dead)
-			break ;
-		usleep(1000);
-		if (philo->nb_meal >= data->nb_eat && data->nb_eat != -1)
-			break ;
-	}
-	return (NULL);
-}
 
 void	*life_cycle(void *arg)
 {
@@ -47,14 +20,13 @@ void	*life_cycle(void *arg)
 	philo = (t_philo *)arg;
 	data = philo->data;
 	philo->last_meal = get_time();
-	pthread_create(&(philo->death_check), NULL, check_dead, arg);
 	if (philo->id % 2 == 0)
 		usleep(data->time_to_eat * 1000);
 	while (!data->philo_dead)
 	{
 		start_eating(philo);
 		if (philo->nb_meal >= data->nb_eat && data->nb_eat != -1)
-			break ;
+			exit(1);
 		start_sleeping(philo);
 		start_thinking(philo);
 	}
@@ -76,7 +48,7 @@ void	wait_proc(t_data *data)
 		{
 			i = -1;
 			while (++i < data->nb_philo)
-				kill(data->philo[i].proc, 15);
+				kill(data->philo[i].proc, 9);
 			break ;
 		}
 	}

@@ -1,0 +1,6 @@
+{
+    leak sem_open
+    Memcheck:Leak
+    ...
+    fun:sem_open
+}

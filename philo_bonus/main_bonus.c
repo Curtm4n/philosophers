@@ -6,7 +6,7 @@
 /*   By: cdapurif <cdapurif@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 21:51:41 by cdapurif          #+#    #+#             */
-/*   Updated: 2022/01/03 17:48:12 by cdapurif         ###   ########.fr       */
+/*   Updated: 2022/01/04 14:06:01 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,10 @@ int	ft_philo(int ac, char **av)
 	memset(&data, 0, sizeof(t_data));
 	ret = init_struct(&data, ac, av);
 	if (ret)
-	{
-		free_struct(&data);
 		return (error_type(ret));
-	}
 	ret = start_simulation(&data);
 	if (ret)
-	{
-		free_struct(&data);
 		return (error_case("Error in the simulation\n"));
-	}
-	free_struct(&data);
 	return (0);
 }
 
