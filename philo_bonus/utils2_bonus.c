@@ -6,29 +6,30 @@
 /*   By: cdapurif <cdapurif@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 22:05:07 by cdapurif          #+#    #+#             */
-/*   Updated: 2022/01/04 18:12:18 by cdapurif         ###   ########.fr       */
+/*   Updated: 2022/01/05 17:01:32 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-void	smart_wait(t_philo *philo, int time, int eating)
+void	smart_wait(t_philo *philo, int time)
 {
 	t_data		*data;
 	long long	i;
 
 	data = philo->data;
 	i = get_time();
-	while (get_time() - i < time)
+	if (i - philo->last_meal + time > data->time_to_die)
 	{
-		if (eating)
+		usleep(1000 * (time - \
+			((i - philo->last_meal + time) - data->time_to_die)));
+		die_while_action(philo);
+	}
+	else
+	{
+		while (get_time() - i < time)
 		{
-			sem_wait(data->meal_time);
-			die_while_action(philo);
-			sem_post(data->meal_time);
+			usleep(10);
 		}
-		else
-			die_while_action(philo);
-		usleep(10);
 	}
 }

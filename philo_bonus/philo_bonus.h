@@ -6,7 +6,7 @@
 /*   By: cdapurif <cdapurif@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 22:06:54 by cdapurif          #+#    #+#             */
-/*   Updated: 2022/01/04 17:37:55 by cdapurif         ###   ########.fr       */
+/*   Updated: 2022/01/05 17:00:29 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void		start_eating(t_philo *philo);
 void		start_sleeping(t_philo *philo);
 void		start_thinking(t_philo *philo);
 void		print_action(t_data *data, int id, char *action);
-void		smart_wait(t_philo *philo, int time, int eating);
+void		smart_wait(t_philo *philo, int time);
 void		die_while_action(t_philo *philo);
 
 #endif

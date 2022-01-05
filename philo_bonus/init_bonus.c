@@ -6,7 +6,7 @@
 /*   By: cdapurif <cdapurif@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 22:26:37 by cdapurif          #+#    #+#             */
-/*   Updated: 2022/01/04 13:56:04 by cdapurif         ###   ########.fr       */
+/*   Updated: 2022/01/05 17:14:02 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ int	init_struct(t_data *data, int ac, char **av)
 	}
 	else
 		data->nb_eat = -1;
-	if (data->nb_eat == 1)
-		data->nb_eat++;
+	/*if (data->nb_eat == 1)
+		data->nb_eat++;*/
 	if (init_philo(data))
 		return (2);
 	if (init_sem(data))
