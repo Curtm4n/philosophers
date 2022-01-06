@@ -6,7 +6,7 @@
 /*   By: cdapurif <cdapurif@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 22:26:37 by cdapurif          #+#    #+#             */
-/*   Updated: 2022/01/05 17:14:02 by cdapurif         ###   ########.fr       */
+/*   Updated: 2022/01/06 16:04:42 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@ int	init_sem(t_data *data)
 {
 	sem_unlink("/forks");
 	sem_unlink("/write");
-	sem_unlink("/meal_time");
 	data->forks = sem_open("/forks", O_CREAT, S_IRWXU, data->nb_philo);
 	data->write = sem_open("/write", O_CREAT, S_IRWXU, 1);
-	data->meal_time = sem_open("/meal_time", O_CREAT, S_IRWXU, 1);
-	if (data->forks <= 0 || data->write <= 0 || data->meal_time <= 0)
+	if (data->forks <= 0 || data->write <= 0)
 		return (1);
 	return (0);
 }
@@ -56,8 +54,6 @@ int	init_struct(t_data *data, int ac, char **av)
 	}
 	else
 		data->nb_eat = -1;
-	/*if (data->nb_eat == 1)
-		data->nb_eat++;*/
 	if (init_philo(data))
 		return (2);
 	if (init_sem(data))

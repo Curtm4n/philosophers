@@ -6,7 +6,7 @@
 /*   By: cdapurif <cdapurif@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 22:06:54 by cdapurif          #+#    #+#             */
-/*   Updated: 2022/01/05 17:00:29 by cdapurif         ###   ########.fr       */
+/*   Updated: 2022/01/06 15:45:36 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,11 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				nb_eat;
-	int				everybody_ate;
 	long long		launch_time;
 	int				philo_dead;
 	t_philo			philo[250];
 	sem_t			*forks;
 	sem_t			*write;
-	sem_t			*meal_time;
 }				t_data;
 
 int			error_case(char *str);

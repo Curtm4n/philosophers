@@ -6,7 +6,7 @@
 /*   By: cdapurif <cdapurif@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 19:35:36 by cdapurif          #+#    #+#             */
-/*   Updated: 2022/01/04 18:12:52 by cdapurif         ###   ########.fr       */
+/*   Updated: 2022/01/06 16:04:54 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	*life_cycle(void *arg)
 	{
 		start_eating(philo);
 		if (philo->nb_meal >= data->nb_eat && data->nb_eat != -1)
-			exit(1);
+			exit(2);
 		start_sleeping(philo);
 		start_thinking(philo);
 	}
@@ -38,13 +38,17 @@ void	*life_cycle(void *arg)
 void	wait_proc(t_data *data)
 {
 	int	i;
+	int	j;
 	int	ret;
 
 	i = -1;
-	while (++i < data->nb_philo)
+	j = 0;
+	while (1)
 	{
 		waitpid(-1, &ret, 0);
-		if (ret != 0)
+		if (WEXITSTATUS(ret) == 2)
+			j++;
+		if (WEXITSTATUS(ret) == 1 || j == data->nb_philo)
 		{
 			i = -1;
 			while (++i < data->nb_philo)

@@ -6,7 +6,7 @@
 /*   By: cdapurif <cdapurif@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 22:27:45 by cdapurif          #+#    #+#             */
-/*   Updated: 2022/01/04 14:04:27 by cdapurif         ###   ########.fr       */
+/*   Updated: 2022/01/06 13:55:02 by cdapurif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,8 @@ void	destroy_sem(t_data *data)
 {
 	sem_close(data->forks);
 	sem_close(data->write);
-	sem_close(data->meal_time);
 	sem_unlink("/forks");
 	sem_unlink("/write");
-	sem_unlink("/meal_time");
 }
 
 long long	get_time(void)
